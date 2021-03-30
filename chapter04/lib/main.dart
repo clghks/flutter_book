@@ -5,113 +5,705 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: CircleAvatarPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+// 4.5.5
+class CircleAvatarPage extends StatelessWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: Column(
+          children: [
+            CircleAvatar(child: Icon(Icons.person)),
+            CircleAvatar(backgroundImage: NetworkImage('http://bit.ly/2Pvz4t8'), child: Icon(Icons.person)),
+            CircleAvatar(
+              backgroundImage: NetworkImage('https://i.imgur.com/pfkkJds.jpg'),
+              child: Image.network('https://www.woolha.com/media/2020/03/eevee.png'),
+              radius: 100
+            )
+          ],
+        )
+    );
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+// 4.5.4
+class ProgressPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: Column(
+          children: [
+            CircularProgressIndicator(),
+            LinearProgressIndicator()
+          ],
+        )
+    );
   }
+}
+
+
+// 4.5.3
+class IconPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: Icon(
+          Icons.home,
+          color: Colors.red,
+          size: 60, // 기본값 24
+        )
+    );
+  }
+}
+
+// 4.5.2
+class ImagePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: Image.network('http://bit.ly/2Pvz4t8')
+    );
+  }
+}
+
+class ImageAssetPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: Image.asset('images/flutter_icon.jpg')
+    );
+  }
+}
+
+
+// 4.5.1
+class TextPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: Text(
+          'Hello World',
+          style: TextStyle(
+            fontSize: 40,
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.bold,
+            color: Colors.red,
+            letterSpacing: 4.0
+          ),
+        )
+    );
+  }
+}
+
+// 4.4.4
+class FloatingActionButtonPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {},
+        )
+    );
+  }
+}
+
+// 4.4.3
+class IconButtonPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: IconButton(
+          icon: Icon(Icons.add),
+          color: Colors.red,
+          iconSize: 100,  // 기본값: 24.0
+          onPressed: () {},
+        )
+    );
+  }
+}
+
+// 4.4.2
+class FlatButtonPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: FlatButton(
+          child: Text('FlatButton'),
+          onPressed: () {},
+        )
+    );
+  }
+}
+
+// 4.4.1
+class RaisedButtonPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: RaisedButton(
+          child: Text('RaisedButton'),
+          color: Colors.orange,
+          onPressed: () {},
+        )
+    );
+  }
+}
+
+class RaisedButtonClickPage extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    return Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: RaisedButton(
+          child: Text('RaisedButton'),
+          color: Colors.orange,
+          onPressed: () {
+            _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Button Click')));
+          },
+        )
+    );
+  }
+}
+
+// 4.3.5
+class CardPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: Center(
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16)
+            ),
+            elevation: 4,
+            child: Container(
+              width: 200,
+              height: 200,
+            ),
+          ),
+        )
+    );
+  }
+}
+
+// 4.3.5
+class SizedBoxPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("제목"),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      body: SizedBox(
+        width: 100,
+        height: 100,
+        child: Container(
+          color: Colors.red,
+        ),
+      )
+    );
+  }
+}
+
+// 4.3.4
+class ExpandedPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Column(
+        children: [
+          Expanded(flex: 2, child: Container(color: Colors.red)),
+          Expanded(child: Container(color: Colors.green)),
+          Expanded(child: Container(color: Colors.blue))
+        ],
+      ),
+    );
+  }
+}
+
+// 4.3.3
+class AlignPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Align(
+        alignment: Alignment.bottomRight,
+        child: Container(
+          color: Colors.red,
+          width: 100,
+          height: 100,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+// 4.3.2
+class PaddingPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(40),
+        child: Container(
+          color: Colors.red,
+        ),
+      ),
+    );
+  }
+}
+
+// 4.3.1
+class CenterPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Center(
+        child: Container(
+          color: Colors.red,
+          width: 100,
+          height: 100,
+        ),
+      ),
+    );
+  }
+}
+
+// 4.2.10
+class BottomNavigationBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home'
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile'
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notification'
+          )
+        ],
+      ),
+    );
+  }
+}
+
+// 4.2.9
+class TabBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Tab'),
+            bottom: TabBar(tabs: [
+              Tab(icon: Icon(Icons.tag_faces)),
+              Tab(text: '메뉴2'),
+              Tab(icon: Icon(Icons.info), text: '메뉴3')
+            ]),
+          ),
+          body: TabBarView(
+            children: [
+              Container(color: Colors.yellow),
+              Container(color: Colors.orange),
+              Container(color: Colors.red),
+            ],
+          ),
+        ));
+  }
+}
+
+
+// 4.2.8
+class PageViewPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("제목"),
+        ),
+        body: PageView(
+          children: [
+            Container(color: Colors.red),
+            Container(color: Colors.green),
+            Container(color: Colors.blue)
+          ],
+        )
+    );
+  }
+}
+
+
+// 4.2.7
+class GridViewPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: [
+          Container(
+            color: Colors.red,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          ),
+          Container(
+            color: Colors.green,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          ),
+          Container(
+            color: Colors.blue,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          )
+        ],
+      )
+    );
+  }
+}
+
+// 4.2.6
+class ListViewPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: [
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Home'),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.event),
+            title: Text('Event'),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.camera),
+            title: Text('Camera'),
+            trailing: Icon(Icons.navigate_next),
+            onTap: () {},
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ListItem {
+  String name;
+  IconData icon;
+
+  ListItem({this.name, this.icon});
+}
+
+class ListViewItemsPage extends StatelessWidget {
+  final items = [
+    ListItem(name: 'Home', icon: Icons.home),
+    ListItem(name: 'Event', icon: Icons.event),
+    ListItem(name: 'Camera', icon: Icons.camera)
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: items.map((e) => ListTile(
+          leading: Icon(e.icon),
+          title: Text('${e.name}'),
+          trailing: Icon(Icons.navigate_next),
+          onTap: () {},
+        )).toList(),
+      ),
+    );
+  }
+}
+
+// 4.2.5
+class SingleChildScrollViewPage extends StatelessWidget {
+  final items = List.generate(100, (index) => index).toList();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: SingleChildScrollView(
+        child: ListBody(
+          children: items.map((e) => Text('$e')).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class ColumnScrollViewPage extends StatelessWidget {
+  final items = List.generate(100, (index) => index).toList();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: items.map((e) => Text('$e')).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class ColumnViewPage extends StatelessWidget {
+  final items = List.generate(100, (index) => index).toList();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Column(
+        children: items.map((e) => Text('$e')).toList(),
+      ),
+    );
+  }
+}
+
+// 4.2.4
+class StackPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Stack(
+        children: [
+          Container(
+            color: Colors.red,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          ),
+          Container(
+            color: Colors.green,
+            width: 80,
+            height: 80,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          ),
+          Container(
+            color: Colors.blue,
+            width: 60,
+            height: 60,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+// 4.2.3
+class RowPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            color: Colors.red,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          ),
+          Container(
+            color: Colors.green,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          ),
+          Container(
+            color: Colors.blue,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+// 4.2.2
+class ColumnPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Column(
+        children: [
+          Container(
+            color: Colors.red,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          ),
+          Container(
+            color: Colors.green,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          ),
+          Container(
+            color: Colors.blue,
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+// 4.2.1
+class ContainerPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Container(
+        color: Colors.red,
+        width: 100,
+        height: 100,
+        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.all(8.0),
+      ),
+    );
+  }
+}
+
+// 4.1.1 예제 코드
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("제목"),
+      ),
+      body: Text('여기에 예제 작성'),
     );
   }
 }
