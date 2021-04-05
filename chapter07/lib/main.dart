@@ -1,6 +1,6 @@
-import 'package:chapter07/model/Page1.dart';
-import 'package:chapter07/model/Page2.dart';
-import 'package:chapter07/model/Page3.dart';
+import 'package:chapter07/page/Page1.dart';
+import 'package:chapter07/page/Page2.dart';
+import 'package:chapter07/page/Page3.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,8 +15,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage()
-    );
+        home: MyHomePage());
   }
 }
 
@@ -27,11 +26,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _index = 0;
-  var _pages = [
-    Page1(),
-    Page2(),
-    Page3()
-  ];
+  var _pages = [Page1(), Page2(), Page3()];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('복잡한 UI', style: TextStyle(color: Colors.black)),
         centerTitle: true,
         actions: [
-          IconButton(icon: Icon(Icons.add, color: Colors.black), onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.add, color: Colors.black), onPressed: () {}),
         ],
       ),
       body: _pages[_index],
@@ -55,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.assessment), label: '이용서비스'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: '내 정보')
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle), label: '내 정보')
         ],
       ),
     );
